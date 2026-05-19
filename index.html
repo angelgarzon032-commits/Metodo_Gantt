@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Método Gantt</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- BARRA DE MENÚ NAVEGACIÓN FUNCIONAL -->
+    <nav class="gantt-nav">
+        <div class="nav-container">
+            <a href="#que-es" class="nav-link">¿Qué es?</a>
+            <a href="#historia" class="nav-link">Historia</a>
+            <a href="#ejemplo" class="nav-link">Ejemplo Vivo</a>
+            <a href="#elaboracion" class="nav-link">Elaboración</a>
+            <a href="#errores" class="nav-link">Errores</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- ENCABEZADO -->
+        <header class="gantt-page-header">
+            <h1>Método Diagrama de Gantt</h1>
+            <p>Planifica, gestiona y visualiza la línea de tiempo de tus proyectos con éxito.</p>
+        </header>
+
+        <!-- SECCIÓN INFORMATIVA PRINCIPAL -->
+        <section id="que-es" class="info-section">
+            <h2>¿Qué es un Diagrama de Gantt?</h2>
+            <p>Es una herramienta gráfica cuyo objetivo es exponer el tiempo de dedicación previsto para diferentes tareas o actividades a lo largo de un tiempo total determinado. Es fundamental en la gestión de proyectos modernos.</p>
+            
+            <!-- IMAGEN DE LA SECCIÓN PRINCIPAL -->
+            <img src="img/diagrama.webp" alt="Concepto del Diagrama de Gantt" class="gantt-img">
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Componentes Clave</h3>
+                    <p>Contiene dos ejes principales: el <strong>eje vertical</strong> que detalla las actividades a realizar, y el <strong>eje horizontal</strong> que representa el cronograma (días, semanas, meses).</p>
+                </div>
+                <div class="info-card">
+                    <h3>Ventajas Clave</h3>
+                    <p>Ofrece una vista clara del progreso, ayuda a identificar las dependencias entre tareas y mejora drásticamente la comunicación del equipo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN NUEVA 1: ORIGEN E HISTORIA -->
+        <section id="historia" class="info-section">
+            <h2>Historia del Diagrama de Gantt</h2>
+            <p>Aunque lleva el nombre de Henry Gantt, los primeros conceptos de esta herramienta fueron desarrollados a finales del siglo XIX. Su impacto revolucionó la ingeniería industrial y la gestión de operaciones a nivel global.</p>
+            
+            <!-- IMAGEN DE LA SECCIÓN HISTORIA -->
+            <img src="img/historia.png" alt="Historia y evolución del Diagrama de Gantt" class="gantt-img">
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Karol Adamiecki (1896)</h3>
+                    <p>El ingeniero polaco creó el <em>harmonogram</em>, un precursor del diagrama. Sin embargo, publicó sus investigaciones en polaco y ruso, lo que limitó su adopción en el mundo occidental.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Henry Gantt (1910-1915)</h3>
+                    <p>El ingeniero estadounidense diseñó su propia versión para permitir que los gerentes de producción vieran si el trabajo estaba programado a tiempo. Su adopción masiva llegó al ser utilizado en la Primera Guerra Mundial.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EJEMPLO VIVO Y FUNCIONAL (Tu sección interactiva intacta) -->
+        <section id="ejemplo" class="gantt-wrapper">
+            <h2>Ejemplo Funcional: Proyecto de Software</h2>
+            <p class="gantt-instructions">Utiliza los controles inferiores para modificar el progreso de las actividades en tiempo real.</p>
+            
+            <div class="gantt-container">
+                <div class="gantt-header task-title">Actividad / Tarea</div>
+                <div class="gantt-header">Semana 1</div>
+                <div class="gantt-header">Semana 2</div>
+                <div class="gantt-header">Semana 3</div>
+                <div class="gantt-header">Semana 4</div>
+
+                <div class="gantt-task-name">1. Investigación y Diseño</div>
+                <div class="gantt-days">
+                    <div class="gantt-bar task-1" id="bar-task1" style="--progress: 80%;">
+                        <span class="gantt-bar-text">Progreso: <span id="val-task1">80%</span></span>
+                    </div>
+                </div>
+
+                <div class="gantt-task-name">2. Desarrollo Frontend</div>
+                <div class="gantt-days">
+                    <div class="gantt-bar task-2" id="bar-task2" style="--progress: 45%;">
+                        <span class="gantt-bar-text">Progreso: <span id="val-task2">45%</span></span>
+                    </div>
+                </div>
+
+                <div class="gantt-task-name">3. Pruebas y Despliegue</div>
+                <div class="gantt-days">
+                    <div class="gantt-bar task-3" id="bar-task3" style="--progress: 10%;">
+                        <span class="gantt-bar-text">Progreso: <span id="val-task3">10%</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gantt-controls">
+                <h4>Panel de Simulación (Modifica el Progreso):</h4>
+                <div class="control-group">
+                    <div class="control-item">
+                        <label for="range-task1">1. Investigación y Diseño</label>
+                        <input type="range" id="range-task1" min="0" max="100" value="80">
+                    </div>
+                    <div class="control-item">
+                        <label for="range-task2">2. Desarrollo Frontend</label>
+                        <input type="range" id="range-task2" min="0" max="100" value="45">
+                    </div>
+                    <div class="control-item">
+                        <label for="range-task3">3. Pruebas y Despliegue</label>
+                        <input type="range" id="range-task3" min="0" max="100" value="10">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN NUEVA 2: PASOS PARA CONSTRUIRLO -->
+        <section id="elaboracion" class="info-section">
+            <h2>¿Cómo se elabora un Diagrama de Gantt?</h2>
+            <p>Para construir un diagrama efectivo que guíe con precisión a tu equipo de trabajo, se deben seguir una serie de pasos metodológicos esenciales:</p>
+            
+            <!-- IMAGEN DE LA SECCIÓN PASOS -->
+            <img src="img/pasos.png" alt="Pasos metodológicos para elaborar un Diagrama de Gantt" class="gantt-img">
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>1. Definir las Tareas</h3>
+                    <p>Haz una lista analítica de todas las actividades requeridas para completar el proyecto de principio a fin, desglosándolas en bloques manejables.</p>
+                </div>
+                <div class="info-card">
+                    <h3>2. Establecer Dependencias</h3>
+                    <p>Determina qué actividades no pueden comenzar hasta que otra haya terminado. Esto define la secuencia lógica y evita cuellos de botella.</p>
+                </div>
+                <div class="info-card">
+                    <h3>3. Asignar Tiempos y Recursos</h3>
+                    <p>Calcula la duración estimada para cada tarea (fechas fijas de inicio y entrega) y designa a las personas responsables de ejecutarlas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN NUEVA 3: ERRORES COMUNES -->
+        <section id="errores" class="info-section">
+            <h2>Errores Comunes al Usar Gantt</h2>
+            <p>Aunque es una metodología sumamente visual, una mala configuración inicial puede volver obsoleto el diagrama durante el ciclo de vida del proyecto.</p>
+            
+            <!-- IMAGEN DE LA SECCIÓN ERRORES -->
+            <img src="img/errores.webp" alt="Errores comunes en la gestión de proyectos con Gantt" class="gantt-img">
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Hacerlo Demasiado Complejo</h3>
+                    <p>Añadir microtareas irrelevantes satura visualmente el diagrama. Mantén el enfoque en los hitos importantes y entregables clave.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Olvidar la Actualización</h3>
+                    <p>Un diagrama de Gantt es un documento vivo. Si el proyecto sufre retrasos y el diagrama no se actualiza, pierde toda su utilidad de monitoreo.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

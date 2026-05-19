@@ -1,0 +1,431 @@
+/* ==========================================================================
+   1. VARIABLES GLOBALES Y CONFIGURACIÓN BASE
+   ========================================================================== */
+
+:root {
+    /* Paleta de colores principal */
+    --primary: #2563eb;          /* Azul brillante para elementos activos y acentos */
+    --primary-hover: #1d4ed8;    /* Azul más oscuro para estados focus o hover */
+    --bg-body: #f8fafc;          /* Gris muy claro y limpio para el fondo de la página */
+    --bg-card: #ffffff;          /* Blanco puro para destacar los bloques de contenido */
+    --text-main: #1e293b;        /* Gris oscuro (casi negro) para garantizar alta legibilidad */
+    --text-muted: #64748b;       /* Gris medio para textos secundarios o instrucciones */
+    --border: #e2e8f0;           /* Gris suave para líneas divisorias y bordes discretos */
+    
+    /* Colores temáticos para las barras del diagrama de Gantt */
+    --gantt-blue: #3b82f6;       /* Color para la tarea 1 */
+    --gantt-purple: #a855f7;     /* Color para la tarea 2 */
+    --gantt-green: #10b981;      /* Color para la tarea 3 */
+}
+
+/* Reset general de márgenes, paddings y cálculo de tamaños */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Configuración del cuerpo de la página */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 10px;               /* Espaciado reducido por defecto para pantallas móviles */
+}
+
+/* Contenedor principal para limitar el ancho en pantallas grandes */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   2. COMPORTAMIENTO DE DESPLAZAMIENTO (SCROLL)
+   ========================================================================== */
+
+html {
+    scroll-behavior: smooth;     /* Desplazamiento fluido al usar los enlaces del menú */
+    scroll-padding-top: 75px;    /* Margen superior para que el menú fijo no tape los títulos */
+}
+
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN (Estilo Glassmorphism / Traslúcido)
+   ========================================================================== */
+
+.gantt-nav {
+    position: sticky;            /* Se mantiene fija en la parte superior al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con opacidad */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque del contenido que pasa por detrás */
+    -webkit-backdrop-filter: blur(10px); /* Soporte para navegadores basados en Safari */
+    z-index: 1000;               /* Asegura que el menú quede siempre por encima de todo */
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Sombra sutil inferior */
+}
+
+/* Contenedor interno del menú */
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;             /* Permite que los enlaces se acomoden en varias filas en móviles */
+    justify-content: center;     /* Centra los elementos en pantallas pequeñas */
+    padding: 8px 5px;
+    gap: 5px;
+}
+
+/* Estilo individual de los enlaces del menú */
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.25s ease;  /* Transición suave para el cambio de color */
+}
+
+/* Estado de selección o hover en el menú */
+.nav-link:hover {
+    background-color: rgba(37, 99, 235, 0.1); /* Fondo azul muy tenue */
+    color: var(--primary);       /* Texto azul principal */
+}
+
+
+/* ==========================================================================
+   4. ENCABEZADO DE LA PÁGINA (HERO BANNER)
+   ========================================================================== */
+
+.gantt-page-header {
+    text-align: center;
+    padding: 30px 15px;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb); /* Degradado de azul oscuro a claro */
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.gantt-page-header h1 {
+    font-size: 1.8rem;           /* Tamaño base adaptado a teléfonos */
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.gantt-page-header p {
+    font-size: 0.95rem;
+}
+
+
+/* ==========================================================================
+   5. SECCIONES INFORMATIVAS Y TARJETAS (GRID LAYOUT)
+   ========================================================================== */
+
+/* Bloques principales de contenido */
+.info-section {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    border: 1px solid var(--border);
+}
+
+.info-section h2 {
+    color: #1e3a8a;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 5px;
+}
+
+/* Rejilla de tarjetas: 1 columna por defecto en móviles */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Tarjetas informativas individuales */
+.info-card {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary); /* Línea decorativa azul a la izquierda */
+}
+
+.info-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+
+/* ==========================================================================
+   6. COMPONENTES MULTIMEDIA (IMÁGENES)
+   ========================================================================== */
+
+.gantt-img {
+    width: 100%;                 /* Ocupa el 100% del contenedor disponible */
+    height: auto;                /* Mantiene la proporción original de la imagen */
+    max-height: 400px;           /* Limita el crecimiento para que no se vea gigante */
+    object-fit: contain;         /* Muestra la imagen completa sin recortar ningún borde */
+    background-color: #f8fafc;   /* Fondo neutro por si la imagen tiene transparencias */
+    border-radius: 8px;     
+    margin: 15px 0;         
+    border: 1px solid var(--border); 
+}
+
+
+/* ==========================================================================
+   7. CONTENEDOR E INTERFAZ DEL DIAGRAMA DE GANTT
+   ========================================================================== */
+
+/* Envoltura de la sección interactiva */
+.gantt-wrapper {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+    margin-bottom: 25px;
+}
+
+.gantt-wrapper h2 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.gantt-instructions {
+    font-size: 0.9rem;
+    color: var(--text-muted); 
+    margin-bottom: 15px;
+}
+
+/* Tabla Grid con Scroll horizontal automático para pantallas pequeñas */
+.gantt-container {
+    overflow-x: auto; 
+    display: grid;
+    /* La primera columna mide 160px fijas y las de semanas miden 120px fijas en móvil */
+    grid-template-columns: 160px repeat(4, 120px); 
+    grid-gap: 1px;
+    background-color: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+/* Celdas de encabezado oscuras */
+.gantt-header {
+    background-color: #0f172a;
+    color: white;
+    padding: 12px 10px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.gantt-header.task-title {
+    text-align: left;
+}
+
+/* Celdas con los nombres de las tareas */
+.gantt-task-name {
+    background-color: #f8fafc;
+    padding: 12px 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Área interna donde se dibujan las barras de tiempo */
+.gantt-days {
+    background-color: #ffffff;
+    grid-column: span 4;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    /* Líneas verticales divisorias del fondo simulan las semanas */
+    background-image: linear-gradient(to right, var(--border) 1px, transparent 1px);
+    background-size: 25% 100%;
+}
+
+
+/* ==========================================================================
+   8. BARRAS DE PROGRESO INTERACTIVAS
+   ========================================================================== */
+
+.gantt-bar {
+    height: 30px;
+    margin: auto 0;
+    border-radius: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;   /* Animación suave cuando cambia el tamaño */
+}
+
+/* Posicionamiento en columnas y colores por tarea */
+.task-1 { grid-column: 1 / span 2; background-color: var(--gantt-blue); }
+.task-2 { grid-column: 2 / span 2; background-color: var(--gantt-purple); }
+.task-3 { grid-column: 3 / span 2; background-color: var(--gantt-green); }
+
+/* Capa oscura interna que representa el porcentaje completado */
+.gantt-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--progress, 0%);  /* Controlado dinámicamente mediante JS */
+    background-color: rgba(0, 0, 0, 0.2); /* Sombreado interno */
+    border-radius: 6px 0 0 6px;
+    z-index: 1;
+}
+
+/* Texto del porcentaje */
+.gantt-bar-text {
+    position: relative;
+    z-index: 2;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Sombra al texto para mejorar contraste */
+}
+
+
+/* ==========================================================================
+   9. PANEL DE CONTROLES (SLIDERS / INPUTS)
+   ========================================================================== */
+
+.gantt-controls {
+    margin-top: 20px;
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.gantt-controls h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+/* Contenedor de inputs en vertical para pantallas móviles */
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.control-item label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.control-item input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   10. MEDIA QUERIES (OPTIMIZACIÓN PARA TABLETS Y PC)
+   ========================================================================== */
+
+/* --- TABLETS Y PANTALLAS MEDIANAS (Desde 600px en adelante) --- */
+@media (min-width: 600px) {
+    body {
+        padding: 20px;           /* Más holgura en los laterales */
+    }
+
+    /* Rediseño de la barra de navegación para escritorio */
+    .nav-container {
+        justify-content: flex-end; /* Enlaces ordenados hacia la derecha */
+        padding: 12px 20px;
+        gap: 8px;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    /* Textos del encabezado principal aumentados */
+    .gantt-page-header {
+        padding: 40px 20px;
+    }
+
+    .gantt-page-header h1 {
+        font-size: 2.3rem;
+    }
+
+    .info-section {
+        padding: 30px;
+    }
+
+    .info-section h2, .gantt-wrapper h2 {
+        font-size: 1.75rem;
+    }
+
+    /* La rejilla de tarjetas pasa automáticamente a ser multicolumna */
+    .info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    /* Mayor margen de visualización vertical para imágenes en ordenadores */
+    .gantt-img {
+        max-height: 500px;
+    }
+
+    /* El Gantt se expande fluidamente sin forzar el scroll horizontal en PC */
+    .gantt-container {
+        grid-template-columns: 200px repeat(4, 1fr);
+    }
+
+    .gantt-header, .gantt-task-name {
+        font-size: 0.95rem;
+        padding: 15px;
+    }
+
+    .gantt-bar {
+        height: 35px;
+        font-size: 0.85rem;
+    }
+
+    /* Los deslizadores del panel pasan a ordenarse en línea horizontal */
+    .control-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .control-item {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+/* --- MONITORES GRANDES (Desde 1024px en adelante) --- */
+@media (min-width: 1024px) {
+    .gantt-page-header h1 {
+        font-size: 2.6rem;       /* Título imponente en pantallas de escritorio */
+    }
+}
